@@ -2,6 +2,8 @@ const express = require('express')
 const app = express()
 const port = 3008
 const mysql = require('mysql')
+const bodyParser = require('body-parser')
+
 var swipe = require('./src/swipeApi')
 var newsList = require('./src/newsListApi')
 var sqlAction = require('./src/sqlAction')
@@ -17,12 +19,13 @@ var comment = require('./src/comment')
 
 app.all('*', function(req, res, next) {  
     res.header("Access-Control-Allow-Origin", "*");  
-    res.header("Access-Control-Allow-Headers", "X-Requested-With");  
+    res.header("Access-Control-Allow-Headers", "X-Requested-With,content-type");  
     res.header("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS");  
     res.header("X-Powered-By",' 3.2.1')  
     res.header("Content-Type", "application/json;charset=utf-8");  
     next();  
 });
+app.use(bodyParser.json());
 // app.get('/', (req, res) => res.send('Hello World!'))
 
 app.get('/api/getswipe', (req, res) => {
@@ -64,6 +67,26 @@ app.get('/api/getcomments', (req, res) => {
         message:comment.CommentData
     }
     res.send(JSON.stringify(newsCommentsData));
+})
+app.post('/api/submitcomment/:id', (req, res) => {
+    
+    let newsid = parseInt(req.params.id);
+    let commentContent = req.body.content;
+    
+    var newsCommentItem = {
+        id : comment.CommentData[comment.CommentData.length - 1].id + 1,
+        username : "匿名用户",
+        addtime : new Date(),
+        content : commentContent
+    }
+
+    comment.CommentData.push(newsCommentItem);
+
+    let submitBack = {
+        status:0,
+        message:"ok"
+    }
+    res.send(submitBack);
 })
 
 app.use('/api/public',express.static('public'));
