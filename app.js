@@ -9,6 +9,7 @@ var newsList = require('./src/newsListApi')
 var sqlAction = require('./src/sqlAction')
 var newsInfoApi = require('./src/newsInfoApi')
 var comment = require('./src/comment')
+var photo = require('./src/photo')
 
 // var sqlsel = 'select * from webusers';
 // var db = sqlAction.sqlAction.db();
@@ -25,12 +26,14 @@ app.all('*', function(req, res, next) {
     res.header("Content-Type", "application/json;charset=utf-8");  
     next();  
 });
+// body-parser中间件解析post数据
 app.use(bodyParser.json());
 // app.get('/', (req, res) => res.send('Hello World!'))
-
+// 1. 获取轮播图数据
 app.get('/api/getswipe', (req, res) => {
     res.send(swipe.swipeList);
 })
+// 2. 获取新闻列表数据
 app.get('/api/getnewslist', (req,res) => {
     var newsApi = {
         status : newsList.status,
@@ -38,6 +41,7 @@ app.get('/api/getnewslist', (req,res) => {
     }
     res.send(JSON.stringify(newsApi));
 })
+// 3. 获取新闻详细数据
 app.get('/api/getnewsinfo', (req, res) => {
     var newsid = parseInt(req.query.newsid);
     console.log(newsid);
@@ -59,6 +63,7 @@ app.get('/api/getnewsinfo', (req, res) => {
 
     res.send(JSON.stringify(newsinfoitem));
 })
+// 4. 获取评论数据
 app.get('/api/getcomments', (req, res) => {
     var newsid = parseInt(req.query.newsid);
 
@@ -68,6 +73,7 @@ app.get('/api/getcomments', (req, res) => {
     }
     res.send(JSON.stringify(newsCommentsData));
 })
+// 5. 提交评论数据
 app.post('/api/submitcomment/:id', (req, res) => {
     
     let newsid = parseInt(req.params.id);
@@ -88,9 +94,23 @@ app.post('/api/submitcomment/:id', (req, res) => {
     }
     res.send(submitBack);
 })
+// 6. 获取图片分类数据
+app.get('/api/getimgclass', (req, res) => {
+    res.send({status:0,message:photo.Pclass});
+})
+// 7. 获取图片每个详细分类的数据
+app.get('/api/getimages', (req, res) => {
+    // let photoid = parseInt(req.params.id);
+    let photoInfoData = {
+        status:0,
+        message:photo.photoInfo
+    }
+    res.send(photoInfoData);
 
+})
+
+
+// X. 设置静态资源托管目录
 app.use('/api/public',express.static('public'));
 
-
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
-
