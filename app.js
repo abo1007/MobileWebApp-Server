@@ -108,7 +108,16 @@ app.get('/api/getimages', (req, res) => {
     res.send(photoInfoData);
 
 })
+app.get('/api/getimginfo/:id', (req, res) => {
+    let photoid = parseInt(req.params.id);
+    
+    let photoInfoData = {
+        status:0,
+        message:photo.photoInfo[0][photoid - 1]
+    }
+    res.send(photoInfoData);
 
+})
 
 // X. 设置静态资源托管目录
 app.use('/api/public',express.static('public'));
