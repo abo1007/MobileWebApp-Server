@@ -1,8 +1,9 @@
 const config = {
     host:"localhost",
     user:"root",
-    password:"yhx000881",
-    database:"MobileWeb"
+    password:"root",
+    database:"MobileWeb",
+    port:'8889'
 };
 
 module.exports = config;
