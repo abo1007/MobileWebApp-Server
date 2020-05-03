@@ -76,8 +76,15 @@
 * 请求方式 : GET
 * 请求地址 : `http://127.0.0.1:3008/api/getimginfo/` + id
 
+### 2.9 商品列表数据
+
+* 返回数据类型 : JSON
+* 返回数据 : 包含 商品id 商品图片 商品标题 商品价格 商品剩余量 的 数组对象   (status + message)
+* 请求方式 : GET
+* 请求地址 : `http://127.0.0.1:3008/api/getgoodslist/`
+
 ### 2.X 静态资源托管目录
 
 * 返回数据类型 : *
 * 请求方式 : GET(Src)
-> http://127.0.0.1:3008/api/public
+> `http://127.0.0.1:3008/api/public`
