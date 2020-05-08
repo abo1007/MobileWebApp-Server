@@ -6,8 +6,9 @@
 
 * database.config.js : mysql数据库登陆配置信息
 * sqlAction.js : mysql数据库操作封装
-* newsListApi.js : 新闻标题及缩略图路径数据
+* newsListApi.js : 新闻标题及缩略图路径数据 新闻详细数据
 * swipeApi.js : 轮播图url数据
+* comment.js : 评论数据
 
 ### public  (静态资源托管目录)
 
@@ -81,7 +82,9 @@
 * 返回数据类型 : JSON
 * 返回数据 : 包含 商品id 商品图片 商品标题 商品价格 商品剩余量 的 数组对象   (status + message)
 * 请求方式 : GET
-* 请求地址 : `http://127.0.0.1:3008/api/getgoodslist/`
+* 请求地址 : `http://127.0.0.1:3008/api/getgoodslist?pageindex=` + pageindex
+
+
 
 ### 2.X 静态资源托管目录
 

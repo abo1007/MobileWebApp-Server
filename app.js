@@ -1,15 +1,15 @@
 const express = require('express')
 const app = express()
 const port = 3008
-const mysql = require('mysql')
+// const mysql = require('mysql')
 const bodyParser = require('body-parser')
 
 var swipe = require('./src/swipeApi')
 var newsList = require('./src/newsListApi')
 var sqlAction = require('./src/sqlAction')
-var newsInfoApi = require('./src/newsInfoApi')
 var comment = require('./src/comment')
 var photo = require('./src/photo')
+var goods = require('./src/goods')
 
 // var sqlsel = 'select * from webusers';
 // var db = sqlAction.sqlAction.db();
@@ -44,20 +44,21 @@ app.get('/api/getnewslist', (req,res) => {
 // 3. 获取新闻详细数据
 app.get('/api/getnewsinfo', (req, res) => {
     var newsid = parseInt(req.query.newsid);
-    console.log(newsid);
+    // console.log(newsid);
     var newsinfoitem;
-    newsInfoApi.newsinfo.some(element => {
+    var newsinfostatus = 1;
+    newsList.newsinfo.some(element => {
         if(element.id == newsid){
-            newsInfoApi.status = 0;
+            newsinfostatus = 0;
             newsinfoitem = element;
             return true;
         }else{
-            newsInfoApi.status = 1
+            newsinfostatus = 1
         }
     });
 
     var newsinfoitem = {
-        status : newsInfoApi.status,
+        status : newsinfostatus,
         message : newsinfoitem
     }
 
@@ -116,7 +117,20 @@ app.get('/api/getimginfo/:id', (req, res) => {
         message:photo.photoInfo[0][photoid - 1]
     }
     res.send(photoInfoData);
-
+})
+app.get('/api/getgoodslist', (req, res) => {
+    let pageindex = parseInt(req.query.pageindex); 
+    goods.goodslist(pageindex, result => {
+        let data = {
+            status:0,
+            message:result
+        }    
+        send_func(data);            
+    });
+    function send_func(data) {
+        res.send(data);
+    }
+    
 })
 
 // X. 设置静态资源托管目录

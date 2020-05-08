@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 2020-05-01 07:24:09
+-- Generation Time: 2020-05-08 13:05:02
 -- 服务器版本： 10.1.26-MariaDB
 -- PHP Version: 7.1.9
 
@@ -21,6 +21,34 @@ SET time_zone = "+00:00";
 --
 -- Database: `mobileweb`
 --
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `goods`
+--
+
+CREATE TABLE `goods` (
+  `id` int(5) NOT NULL,
+  `name` varchar(50) COLLATE utf8mb4_bin NOT NULL,
+  `content` varchar(100) COLLATE utf8mb4_bin NOT NULL,
+  `addtime` datetime NOT NULL,
+  `imgurl` varchar(70) COLLATE utf8mb4_bin NOT NULL,
+  `price` int(10) NOT NULL,
+  `old_price` int(10) NOT NULL,
+  `count` int(5) NOT NULL,
+  `click_count` int(5) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+
+--
+-- 转存表中的数据 `goods`
+--
+
+INSERT INTO `goods` (`id`, `name`, `content`, `addtime`, `imgurl`, `price`, `old_price`, `count`, `click_count`) VALUES
+(1, 'DJI 大疆灵眸osmo pocket 口袋云台相机', 'DJI 大疆灵眸osmo pocket 口袋云台相机 高清增稳vlog摄像机 大疆手持云台 官方旗舰店', '2020-05-07 00:00:00', 'http://127.0.0.1:3008/api/public/images/goods/001.jpg', 2499, 3347, 99, 1),
+(2, 'iPhone 11 Pro 64GB', '全新iphone11pro，三镜头超广角设计', '2020-05-07 15:00:00', 'http://127.0.0.1:3008/api/public/images/goods/002.jpg', 7599, 8899, 99, 999),
+(3, 'Apple AirPods Pro 主动降噪无线蓝牙耳机', '企业购更优惠 Apple AirPods Pro 主动降噪无线蓝牙耳机 适用iPhone/iPad/Apple Watch ', '2020-05-07 16:23:15', 'http://127.0.0.1:3008/api/public/images/goods/003.jpg', 1999, 2999, 99, 999),
+(4, 'Apple Watch Series 3智能手表', 'Apple Watch Series 3智能手表（GPS款 38毫米 深空灰色铝金属表壳 黑色运动型表带 MTF02CH/A）', '2020-05-07 14:36:00', 'http://127.0.0.1:3008/api/public/images/goods/004.jpg', 1399, 1599, 99, 999);
 
 -- --------------------------------------------------------
 
@@ -81,6 +109,12 @@ INSERT INTO `webusers` (`id`, `username`, `password`, `isroot`, `class`) VALUES
 --
 
 --
+-- Indexes for table `goods`
+--
+ALTER TABLE `goods`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `photoinfo`
 --
 ALTER TABLE `photoinfo`
@@ -95,6 +129,12 @@ ALTER TABLE `webusers`
 --
 -- 在导出的表使用AUTO_INCREMENT
 --
+
+--
+-- 使用表AUTO_INCREMENT `goods`
+--
+ALTER TABLE `goods`
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- 使用表AUTO_INCREMENT `photoinfo`
