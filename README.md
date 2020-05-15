@@ -84,6 +84,19 @@
 * 请求方式 : GET
 * 请求地址 : `http://127.0.0.1:3008/api/getgoodslist?pageindex=` + pageindex
 
+### 2.10 商品详细数据
+
+* 返回数据类型 : JSON
+* 返回数据 :
+* 请求方式 : GET
+* 请求地址 : `http://127.0.0.1:3008/api/getgoods?id=` + id
+
+### 2.11 留言反馈列表数据
+
+* 返回数据类型 : JSON
+* 返回数据 : 包含 评论id 用户名 评论时间 评论内容 的 数组对象   (status + message)
+* 请求方式 : GET
+* 请求地址 : `http://127.0.0.1:3008/api/getfeedback`
 
 
 ### 2.X 静态资源托管目录

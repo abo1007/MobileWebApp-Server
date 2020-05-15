@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 2020-05-08 13:05:02
+-- Generation Time: 2020-05-15 15:41:52
 -- 服务器版本： 10.1.26-MariaDB
 -- PHP Version: 7.1.9
 
@@ -21,6 +21,28 @@ SET time_zone = "+00:00";
 --
 -- Database: `mobileweb`
 --
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `feedback`
+--
+
+CREATE TABLE `feedback` (
+  `id` int(5) NOT NULL,
+  `username` varchar(30) COLLATE utf8_bin NOT NULL,
+  `addtime` datetime NOT NULL,
+  `content` varchar(100) COLLATE utf8_bin NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- 转存表中的数据 `feedback`
+--
+
+INSERT INTO `feedback` (`id`, `username`, `addtime`, `content`) VALUES
+(1, '匿名用户', '2020-05-11 12:00:00', '这软件太垃圾了，居然都没人发红包？垃圾！'),
+(2, '匿名用户', '2020-05-13 06:00:00', '楼上吃粑粑了吧？楼下吃老八秘制小汉堡，既实惠还管饱'),
+(3, '匿名用户', '2020-05-13 08:00:00', '我家住在葫芦岛，大家都吃小汉堡，腐乳韭菜豆腐脑，你说老八好不好');
 
 -- --------------------------------------------------------
 
@@ -109,6 +131,12 @@ INSERT INTO `webusers` (`id`, `username`, `password`, `isroot`, `class`) VALUES
 --
 
 --
+-- Indexes for table `feedback`
+--
+ALTER TABLE `feedback`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `goods`
 --
 ALTER TABLE `goods`
@@ -129,6 +157,12 @@ ALTER TABLE `webusers`
 --
 -- 在导出的表使用AUTO_INCREMENT
 --
+
+--
+-- 使用表AUTO_INCREMENT `feedback`
+--
+ALTER TABLE `feedback`
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- 使用表AUTO_INCREMENT `goods`

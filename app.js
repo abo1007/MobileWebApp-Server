@@ -10,6 +10,7 @@ var sqlAction = require('./src/sqlAction')
 var comment = require('./src/comment')
 var photo = require('./src/photo')
 var goods = require('./src/goods')
+var feedback = require('./src/feedback')
 
 // var sqlsel = 'select * from webusers';
 // var db = sqlAction.sqlAction.db();
@@ -90,8 +91,8 @@ app.post('/api/submitcomment/:id', (req, res) => {
     comment.CommentData.push(newsCommentItem);
 
     let submitBack = {
-        status:0,
-        message:"ok"
+        status : 0,
+        message : "ok"
     }
     res.send(submitBack);
 })
@@ -103,37 +104,52 @@ app.get('/api/getimgclass', (req, res) => {
 app.get('/api/getimages', (req, res) => {
     // let photoid = parseInt(req.params.id);
     let photoInfoData = {
-        status:0,
-        message:photo.photoInfo
+        status : 0,
+        message : photo.photoInfo
     }
     res.send(photoInfoData);
 
 })
+// 8. 获取图片详细页
 app.get('/api/getimginfo/:id', (req, res) => {
     let photoid = parseInt(req.params.id);
     
     let photoInfoData = {
-        status:0,
-        message:photo.photoInfo[0][photoid - 1]
+        status : 0,
+        message : photo.photoInfo[0][photoid - 1]
     }
     res.send(photoInfoData);
 })
+// 9. 获取商品列表
 app.get('/api/getgoodslist', (req, res) => {
     let pageindex = parseInt(req.query.pageindex); 
     goods.goodslist(pageindex, result => {
         let data = {
-            status:0,
-            message:result
+            status : 0,
+            message : result
         }    
-        send_func(data);            
+        send_func(res, data);            
     });
-    function send_func(data) {
-        res.send(data);
-    }
     
+})
+
+
+// 11.获取反馈留言列表数据
+app.get('/api/getfeedback', (req, res) => {
+    feedback.getfeedback(result => {
+        let data = {
+            status : 0,
+            message : result
+        }
+        send_func(res, data);
+    });
 })
 
 // X. 设置静态资源托管目录
 app.use('/api/public',express.static('public'));
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
+
+function send_func(res, data) {
+    res.send(data);
+}
