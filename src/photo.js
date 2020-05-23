@@ -15,7 +15,7 @@ db.connect((err) => {
         console.log("失败");
         throw err;
     }
-    console.log('连接成功');
+    console.log('photo Modules 连接成功');
 })
 
 var photoInfo = [];

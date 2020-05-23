@@ -9,7 +9,7 @@ db.connect((err) => {
         console.log("失败");
         throw err;
     }
-    console.log('连接成功');
+    console.log('goods Modules 连接成功');
 })
 var sqlsay = "SELECT * FROM `goods`"
 

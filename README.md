@@ -1,5 +1,12 @@
 ## MobileWebApp-Server
 
+## 0. 运行方式
+
+1. 使用 `npm i` 安装依赖
+2. 将 `mobileweb.sql` 导入到 mysql 数据库中 (需要名为mobileweb的库)
+3. 修改好 `database.config.js` 为你的数据库配置信息
+4. `node app` 运行服务，当输出连接成功时，则说明可用
+
 ## 1. 项目目录
 
 ### src 
@@ -98,6 +105,13 @@
 * 请求方式 : GET
 * 请求地址 : `http://127.0.0.1:3008/api/getfeedback`
 
+### 2.12 留言反馈提交数据
+
+* 返回数据类型 : JSON
+* 返回数据 : 包含 评论id 用户名 评论时间 评论内容 的 数组对象   (status + message)
+* 请求方式 : POST
+* 请求体: {content:反馈内容}
+* 请求地址 : `http://127.0.0.1:3008/api/submitfeedback`
 
 ### 2.X 静态资源托管目录
 

@@ -132,9 +132,19 @@ app.get('/api/getgoodslist', (req, res) => {
     });
     
 })
+// 10. 获取商品详细
+app.get('/api/getgoods', (req, res) => {
+    let goodsid = parseInt(req.query.id);
+    goods.goodslist(1, result => {
+        let data = {
+            status : 0,
+            message : result[goodsid-1]
+        }    
+        send_func(res, data);            
+    });
+})
 
-
-// 11.获取反馈留言列表数据
+// 11. 获取反馈留言列表数据
 app.get('/api/getfeedback', (req, res) => {
     feedback.getfeedback(result => {
         let data = {
@@ -143,6 +153,15 @@ app.get('/api/getfeedback', (req, res) => {
         }
         send_func(res, data);
     });
+})
+// 12. 提交留言数据
+app.post('/api/submitfeedback', (req, res) => {
+    let feedbackContent = req.body.content;
+
+})
+// 13. 获取商品图文详细数据 （与 10 共用）
+app.get('/api/getdesc/:id', (req, res) => {
+    let goodsid = req.params.id
 })
 
 // X. 设置静态资源托管目录
