@@ -161,7 +161,17 @@ app.post('/api/submitfeedback', (req, res) => {
 })
 // 13. 获取商品图文详细数据 （与 10 共用）
 app.get('/api/getdesc/:id', (req, res) => {
-    let goodsid = req.params.id
+    let goodsid = req.params.id;
+    goods.goodslist(1, result => {
+        let data = {
+            status : 0,
+            message : {
+                name : result[goodsid-1].name,
+                content : result[goodsid-1].goods_desc
+            }
+        }    
+        send_func(res, data);
+    });
 })
 
 // X. 设置静态资源托管目录
