@@ -15,10 +15,22 @@ function getfeedback(callback) {
     db.query(sqlsay, (err, result) => {
         if(err) throw err;
         // console.log(result);
-        callback(result)
+        callback(result);
+    })
+}
+function sendsqlfeedback(content,callback) {
+    let sqlsendsay = "INSERT INTO `feedback` (`username`, `addtime`, `content`) VALUES ('匿名用户', NOW() ,'"+content+"');"
+
+    db.query(sqlsendsay, (err, result) => {
+        if(err) throw err;
+        getfeedback(result => {
+            callback(result);
+        })
+        
     })
 }
 
 module.exports = {
-    getfeedback
+    getfeedback,
+    sendsqlfeedback
 }

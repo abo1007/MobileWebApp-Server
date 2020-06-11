@@ -157,6 +157,15 @@ app.get('/api/getfeedback', (req, res) => {
 // 12. 提交留言数据
 app.post('/api/submitfeedback', (req, res) => {
     let feedbackContent = req.body.content;
+    // console.log(feedbackContent);
+    feedback.sendsqlfeedback(feedbackContent,result => {
+        let data = {
+            status : 0,
+            message : result
+        }
+        send_func(res, data);
+    });
+
 
 })
 // 13. 获取商品图文详细数据 （与 10 共用）

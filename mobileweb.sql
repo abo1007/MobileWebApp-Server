@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 2020-05-24 13:42:45
+-- Generation Time: 2020-06-10 10:07:47
 -- 服务器版本： 10.1.26-MariaDB
 -- PHP Version: 7.1.9
 
@@ -42,7 +42,11 @@ CREATE TABLE `feedback` (
 INSERT INTO `feedback` (`id`, `username`, `addtime`, `content`) VALUES
 (1, '匿名用户', '2020-05-11 12:00:00', '这软件太垃圾了，居然都没人发红包？垃圾！'),
 (2, '匿名用户', '2020-05-13 06:00:00', '楼上吃粑粑了吧？楼下吃老八秘制小汉堡，既实惠还管饱'),
-(3, '匿名用户', '2020-05-13 08:00:00', '我家住在葫芦岛，大家都吃小汉堡，腐乳韭菜豆腐脑，你说老八好不好');
+(3, '匿名用户', '2020-05-13 08:00:00', '我家住在葫芦岛，大家都吃小汉堡，腐乳韭菜豆腐脑，你说老八好不好'),
+(4, '匿名用户', '2020-06-09 21:33:27', '岳颖姐姐在线锤人'),
+(5, '匿名用户', '2020-06-09 21:34:33', '你说什么就是什么'),
+(6, '匿名用户', '2020-06-09 21:36:23', '小胖颖最可爱'),
+(11, '匿名用户', '2020-06-09 21:39:38', '小胖颖最漂亮');
 
 -- --------------------------------------------------------
 
@@ -163,7 +167,7 @@ ALTER TABLE `webusers`
 -- 使用表AUTO_INCREMENT `feedback`
 --
 ALTER TABLE `feedback`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- 使用表AUTO_INCREMENT `goods`
