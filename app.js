@@ -140,7 +140,7 @@ app.get('/api/getgoods', (req, res) => {
             status : 0,
             message : result[goodsid-1]
         }    
-        send_func(res, data);            
+        send_func(res, data);
     });
 })
 
@@ -182,7 +182,36 @@ app.get('/api/getdesc/:id', (req, res) => {
         send_func(res, data);
     });
 })
+// 14. 获取购物车数据
+app.get('/api/shopcardata/:id',(req, res) => {
+    let goodsid = req.params.id;
+    // console.log(goodsid);  
+    let idArr = goodsid.split(',');
+    let goodsidArr = [];
+    idArr.forEach((item,index) => {
+        goodsidArr[index] = parseInt(item);
+    });
+    let goodsdata = [];
+    goods.goodslist(1, result => {
+        goodsdata = result;
+        let sendData = [];
+        goodsidArr.forEach(item => {
+            goodsdata.forEach(itemd => {
+                if(item == itemd.id){
+                    sendData.push(itemd);
+                }
+            })
+        })
+        // console.log(sendData);
+        
+        send_func(res,{
+            status : 0,
+            message : sendData
+        })
+    })
+})
 
+    
 // X. 设置静态资源托管目录
 app.use('/api/public',express.static('public'));
 
