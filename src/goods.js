@@ -1,5 +1,3 @@
-
-
 const mysql = require('mysql');
 var dbconfig = require('./database.config');
 
@@ -20,8 +18,6 @@ function goodslist(pageindex,callback) {
         callback(result)
     })
 }
-
-
 
 module.exports = {
     goodslist

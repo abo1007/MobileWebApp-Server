@@ -11,13 +11,7 @@ var comment = require('./src/comment')
 var photo = require('./src/photo')
 var goods = require('./src/goods')
 var feedback = require('./src/feedback')
-
-// var sqlsel = 'select * from webusers';
-// var db = sqlAction.sqlAction.db();
-
-// sqlAction.sqlAction.dbconnect(db);
-// sqlAction.sqlAction.sqlSel(db,sqlsel);
-// sqlAction.sqlAction.sqlend(db);
+const { NewsInfo } = require('./src/newsListApi')
 
 app.all('*', function(req, res, next) {  
     res.header("Access-Control-Allow-Origin", "*");  
@@ -30,40 +24,36 @@ app.all('*', function(req, res, next) {
 // body-parser中间件解析post数据
 app.use(bodyParser.json());
 // app.get('/', (req, res) => res.send('Hello World!'))
+
 // 1. 获取轮播图数据
 app.get('/api/getswipe', (req, res) => {
     res.send(swipe.swipeList);
 })
 // 2. 获取新闻列表数据
 app.get('/api/getnewslist', (req,res) => {
-    var newsApi = {
-        status : newsList.status,
-        message : newsList.newsListApi
-    }
-    res.send(JSON.stringify(newsApi));
+    newsList.NewsListApi(result => {
+        let newsApi = {
+            status : newsList.status,
+            message : result
+        }
+        res.send(JSON.stringify(newsApi));
+    });
 })
 // 3. 获取新闻详细数据
 app.get('/api/getnewsinfo', (req, res) => {
-    var newsid = parseInt(req.query.newsid);
-    // console.log(newsid);
-    var newsinfoitem;
-    var newsinfostatus = 1;
-    newsList.newsinfo.some(element => {
-        if(element.id == newsid){
-            newsinfostatus = 0;
-            newsinfoitem = element;
-            return true;
-        }else{
-            newsinfostatus = 1
-        }
+    let newsid = parseInt(req.query.newsid);
+
+    newsList.NewsInfo(newsid, result => {
+        result.some(item => {
+            if(item.id == newsid){
+                res.send(JSON.stringify({
+                    status : newsList.status,
+                    message : item
+                }));
+            }
+        });
     });
 
-    var newsinfoitem = {
-        status : newsinfostatus,
-        message : newsinfoitem
-    }
-
-    res.send(JSON.stringify(newsinfoitem));
 })
 // 4. 获取评论数据
 app.get('/api/getcomments', (req, res) => {

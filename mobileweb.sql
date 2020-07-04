@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 2020-06-27 16:00:58
+-- Generation Time: 2020-07-04 10:59:21
 -- 服务器版本： 10.1.26-MariaDB
 -- PHP Version: 7.1.9
 
@@ -82,6 +82,56 @@ INSERT INTO `goods` (`id`, `name`, `content`, `addtime`, `imgurl`, `price`, `old
 -- --------------------------------------------------------
 
 --
+-- 表的结构 `newsinfo`
+--
+
+CREATE TABLE `newsinfo` (
+  `id` int(11) NOT NULL,
+  `title` varchar(100) COLLATE utf8mb4_bin NOT NULL,
+  `addtime` datetime NOT NULL,
+  `content` varchar(500) COLLATE utf8mb4_bin NOT NULL,
+  `click` int(11) NOT NULL,
+  `imgUrl` varchar(100) COLLATE utf8mb4_bin NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+
+--
+-- 转存表中的数据 `newsinfo`
+--
+
+INSERT INTO `newsinfo` (`id`, `title`, `addtime`, `content`, `click`, `imgUrl`) VALUES
+(1, '震惊，已近5月，带专院校竟还不开学', '2020-04-23 00:00:00', '一是严格执行教育部学费（保教费）收费规定。各地各学校不得跨学年或学期预收学费（保教费），未开学或未开课不得提前收取学费（保教费）。二是严格落实住宿费退费要求。住宿费每学年按10个月（每学期按5个月）计算。疫情防控期间，学校应根据学生实际在校住宿时间计收住宿费。在校住宿时间不足一个月的，15天（含15天）以上的按一个月计算，15天以下的按半个月计算。多余部分退还学生。（上述规定仅限于疫情防控期间）三是严肃查处违规违纪乱收费问题。各级教育、发改、财政等行政管理部门要严肃查处疫情防控期间学校违反预警规定乱收费问题。一经查实，除对相关责任人进行严肃处理外，还要追究有关负责人的领导责任，并在全省进行公开通报。教育部：疫情防控期间不得提前收取学费住宿费', 888, 'http://127.0.0.1:3008/api/public/images/news/new1.jpg'),
+(2, '窃格瓦拉将出狱，你的电瓶，锁好了吗？', '2020-04-30 10:00:00', '司法部：将持续关注', 66, 'http://127.0.0.1:3008/api/public/images/news/new2.jpg'),
+(3, '世界还能不能好了？大白天的手脚冰凉，眼泪不争气的...', '2020-05-01 07:00:00', '该团伙曾经收受境外势力的资金，现已被抓获', 99, 'http://127.0.0.1:3008/api/public/images/news/new3.jpg'),
+(4, '定了！这所大学的毕业生将包分配高薪就业！', '2020-05-04 02:40:00', '据悉，该校毕业生已被分配至富土康流水线高薪就业！', 999, 'http://127.0.0.1:3008/api/public/images/news/new3.jpg');
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `newslist`
+--
+
+CREATE TABLE `newslist` (
+  `id` int(11) NOT NULL,
+  `title` varchar(200) COLLATE utf8mb4_bin NOT NULL,
+  `addtime` datetime NOT NULL,
+  `zhaiyao` varchar(400) COLLATE utf8mb4_bin NOT NULL,
+  `click` int(4) NOT NULL,
+  `imgUrl` varchar(100) COLLATE utf8mb4_bin NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+
+--
+-- 转存表中的数据 `newslist`
+--
+
+INSERT INTO `newslist` (`id`, `title`, `addtime`, `zhaiyao`, `click`, `imgUrl`) VALUES
+(1, '震惊，已近5月，带专院校竟还不开学', '2020-04-23 08:00:00', '带专人，带专混，带专都是人上人！', 888, 'http://127.0.0.1:3008/api/public/images/news/new1.jpg'),
+(2, '窃格瓦拉将出狱，你的电瓶，锁好了吗？', '2020-04-30 18:00:00', '司法部：将持续关注', 66, 'http://127.0.0.1:3008/api/public/images/news/new2.jpg'),
+(3, '世界还能不能好了？大白天的手脚冰凉，眼泪不争气的...', '2020-05-01 15:00:00', '该团伙曾经收受境外势力的资金，现已被抓获', 99, 'http://127.0.0.1:3008/api/public/images/news/new3.jpg'),
+(4, '定了！这所大学的毕业生将包分配高薪就业！', '2020-05-04 10:40:00', '据悉，该校毕业生已被分配至富土康流水线高薪就业！', 999, 'http://127.0.0.1:3008/api/public/images/news/new3.jpg');
+
+-- --------------------------------------------------------
+
+--
 -- 表的结构 `photoinfo`
 --
 
@@ -150,6 +200,18 @@ ALTER TABLE `goods`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `newsinfo`
+--
+ALTER TABLE `newsinfo`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `newslist`
+--
+ALTER TABLE `newslist`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `photoinfo`
 --
 ALTER TABLE `photoinfo`
@@ -176,6 +238,18 @@ ALTER TABLE `feedback`
 --
 ALTER TABLE `goods`
   MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- 使用表AUTO_INCREMENT `newsinfo`
+--
+ALTER TABLE `newsinfo`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- 使用表AUTO_INCREMENT `newslist`
+--
+ALTER TABLE `newslist`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- 使用表AUTO_INCREMENT `photoinfo`
