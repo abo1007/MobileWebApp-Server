@@ -12,6 +12,7 @@ var photo = require('./src/photo')
 var goods = require('./src/goods')
 var feedback = require('./src/feedback')
 const { NewsInfo } = require('./src/newsListApi')
+const video = require("./src/video")
 
 app.all('*', function(req, res, next) {  
     res.header("Access-Control-Allow-Origin", "*");  
@@ -192,13 +193,24 @@ app.get('/api/shopcardata/:id',(req, res) => {
                 }
             })
         })
-        // console.log(sendData);
         
         send_func(res,{
             status : 0,
             message : sendData
         })
     })
+})
+// 15. 获取视频列表数据
+app.get('/api/getvideolist/:pages', (req, res) => {
+    let pages = req.params.pages;
+    video.GetList(pages, result => {
+        let data = {
+            status : video.status,
+            message : result
+        };
+        send_func(res, data);
+    })
+
 })
 
     

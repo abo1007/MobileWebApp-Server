@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 2020-07-04 10:59:21
+-- Generation Time: 2020-08-19 09:39:21
 -- 服务器版本： 10.1.26-MariaDB
 -- PHP Version: 7.1.9
 
@@ -164,6 +164,32 @@ INSERT INTO `photoinfo` (`id`, `title`, `content`, `url`, `class`, `count`, `add
 -- --------------------------------------------------------
 
 --
+-- 表的结构 `videolist`
+--
+
+CREATE TABLE `videolist` (
+  `id` int(11) NOT NULL,
+  `title` varchar(100) COLLATE utf8mb4_bin NOT NULL,
+  `author` varchar(100) COLLATE utf8mb4_bin NOT NULL,
+  `playnum` int(11) NOT NULL,
+  `time` datetime NOT NULL,
+  `url` varchar(100) COLLATE utf8mb4_bin NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+
+--
+-- 转存表中的数据 `videolist`
+--
+
+INSERT INTO `videolist` (`id`, `title`, `author`, `playnum`, `time`, `url`) VALUES
+(1, '[北京]北漂为了什么？只是因为理想吗', '北漂指北', 4081020, '2020-08-17 00:00:00', 'http://127.0.0.1:3008/api/public/images/video/peking.jpg'),
+(2, '[雄安]大家一直挂念的雄安 现在怎么样呢？', '京津冀身边事儿', 120023, '2020-08-17 00:00:00', 'http://127.0.0.1:3008/api/public/images/video/xiongan.png'),
+(3, '[成都]2020年度报告 成都是年轻人最喜欢的城市之一', '营销号', 9999, '2020-08-17 00:00:00', 'http://127.0.0.1:3008/api/public/images/video/chengdu.jpg'),
+(4, '[深圳]来了就是深圳人 早已沦为空谈？', '深漂小美', 2201778, '2020-08-11 11:00:00', 'http://127.0.0.1:3008/api/public/images/video/shenzhen.jpg'),
+(5, '[纽约]世界最发达的城市 在疫情的笼罩之下变成了什么样', '我是陈杰森', 99999, '2020-08-01 05:00:00', 'http://127.0.0.1:3008/api/public/images/video/newyork.jpg');
+
+-- --------------------------------------------------------
+
+--
 -- 表的结构 `webusers`
 --
 
@@ -218,6 +244,12 @@ ALTER TABLE `photoinfo`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `videolist`
+--
+ALTER TABLE `videolist`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `webusers`
 --
 ALTER TABLE `webusers`
@@ -256,6 +288,12 @@ ALTER TABLE `newslist`
 --
 ALTER TABLE `photoinfo`
   MODIFY `id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- 使用表AUTO_INCREMENT `videolist`
+--
+ALTER TABLE `videolist`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- 使用表AUTO_INCREMENT `webusers`

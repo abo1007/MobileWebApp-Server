@@ -7,6 +7,8 @@
 3. 修改好 `database.config.js` 为你的数据库配置信息
 4. `node app` 运行服务，当输出连接成功时，则说明可用
 
+* [前端配套](https://github.com/abo1007/MobileWebApp)
+
 ## 1. 项目目录
 
 ### src 
@@ -119,6 +121,13 @@
 * 返回数据 : 包含 商品id 商品图片 商品标题 商品价格 商品剩余量 商品数量  (status + message)
 * 请求方式 : GET
 * 请求地址 : `http://127.0.0.1:3008/api/shopcardata/` + [ids]
+
+### 2.14 视频列表数据
+
+* 返回数据类型 : JSON
+* 返回数据 : 包含 视频id 视频封面 视频名称 视频作者及播放量 发布日期 (status + message)
+* 请求方式 : GET
+* 请求地址 : `http://127.0.0.1:3008/api/getvideolist/`+ pages 
 
 ### 2.X 静态资源托管目录
 
